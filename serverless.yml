@@ -106,7 +106,18 @@ functions:
           integration: lambda
           request:
             template:
-              application/json: ${file(passthroughrequest.txt)}  
+              application/json: ${file(passthroughrequest.txt)} 
+
+  setupdatabase:
+    handler: dbsetup.setupdatabase
+    vpc:
+      securityGroupIds:
+        - sg-ff8ffea2
+      subnetIds:
+        - subnet-bf5109d8
+        - subnet-292b3926
+
+         
 
   visiongetlabels:
     handler: vision.visiongetlabels
