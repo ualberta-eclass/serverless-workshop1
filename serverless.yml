@@ -5,7 +5,7 @@
 # uses to deploy your code to your provider of choice
 
 # The `service` block is the name of the service
-service: template1
+service: chkstack3
 
 # The `provider` block defines where your service will be deployed
 provider:
@@ -108,14 +108,14 @@ functions:
             template:
               application/json: ${file(passthroughrequest.txt)} 
 
-  setupdatabase:
-    handler: dbsetup.setupdatabase
-    vpc:
-      securityGroupIds:
-        - sg-ff8ffea2
-      subnetIds:
-        - subnet-bf5109d8
-        - subnet-292b3926
+  # setupdatabase:
+  #   handler: dbsetup.setupdatabase
+  #   vpc:
+  #     securityGroupIds:
+  #       - sg-ff8ffea2
+  #     subnetIds:
+  #       - subnet-bf5109d8
+  #       - subnet-292b3926
 
          
 
