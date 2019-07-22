@@ -11,7 +11,7 @@
 npm install serverless -g
 3. Add your credentials to serverless
 call serverless config credentials --provider aws --key AKIAUMR --secret 805Y0syS23dLMJa/Km -o --profile workshop
-3. Create your project directory by running the following command (with your ccid replacing 'yourccid' in the path): serverless create --template-url https://github.com/ualberta-eclass/tsqs-template/tree/master/tsqs-template --path yourccid
+3. Create your project directory by running the following command (with your ccid replacing 'yourccid' in the path): serverless create --template-url https://github.com/ualberta-eclass/serverless-workshop1 --path yourccid
 4. Go into your directory: cd yourccid
 5. Install packages: npm install
 6. Open the yourccid in VS Code or your favourite IDE. 
