@@ -20,8 +20,9 @@ call serverless config credentials --provider aws --key AKIAUMR --secret 805Y0sy
 
 # LTI
 
-1. todo: Asim add more steps
+1. Set up lti from eClass
 
 # MYSQL 
 
-1. todo: Asim add more steps 
+1. Set up MYSQL Databases
+2. We will do some of this manually just to get a feel from trouble shooting in AWS console
