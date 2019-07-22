@@ -5,13 +5,13 @@
 # uses to deploy your code to your provider of choice
 
 # The `service` block is the name of the service
-service: template
+service: template1
 
 # The `provider` block defines where your service will be deployed
 provider:
   name: aws
-  runtime: nodejs8.10
-  region: us-west-2
+  runtime: nodejs10.x
+  region: us-east-1
   iamManagedPolicies:
    - arn:aws:iam::aws:policy/CloudWatchLogsFullAccess
   iamRoleStatements:
@@ -39,7 +39,15 @@ provider:
          - "dynamodb:UpdateItem"
        Resource:
          - "arn:aws:dynamodb:${self:provider.region}:*:table/${self:service}-servicerequest"
-         - "arn:aws:dynamodb:${self:provider.region}:*:table/tsqs-template-servicerequest"
+
+     - Effect: "Allow"
+       Action:
+         - "rekognition:DetectFaces"
+         - "rekognition:DetectLabels"
+         - "rekognition:DetectText"
+       Resource:
+         - "*"
+
 
 # The `functions` block defines what code to deploy
 functions:
@@ -98,7 +106,33 @@ functions:
           integration: lambda
           request:
             template:
-              application/json: ${file(passthroughrequest.txt)}     
+              application/json: ${file(passthroughrequest.txt)}  
+
+  visiongetlabels:
+    handler: vision.visiongetlabels
+    events:
+      - http:
+          path: /visiongetlabels
+          method: get
+          cors: false
+          integration: lambda
+          request:
+            template:
+              application/json: ${file(passthroughrequest.txt)}  
+
+
+  visiongettext:
+    handler: vision.visiongettext
+    events:
+      - http:
+          path: /visiongettext
+          method: get
+          cors: false
+          integration: lambda
+          request:
+            template:
+              application/json: ${file(passthroughrequest.txt)}                
+              
 plugins:
   - serverless-s3-sync
 
@@ -110,7 +144,7 @@ custom:
       localDir: Resources/static
 resources:
   Resources:
-    CourseRequest:
+    ServiceRequest:
      Type: AWS::DynamoDB::Table
      Properties:
       TableName: ${self:service}-servicerequest

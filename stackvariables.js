@@ -1,6 +1,6 @@
 module.exports.variables = () => {
     let config = {
-        service: "template",
+        service: "template1",
         region: 'us-west-2',
         mysqluser: 'master',
         mysqlpassword: '',
